@@ -1,12 +1,21 @@
 import sys
 
-n,m = input().split(' ')
-mat = [[0 for _ in range(10)] for _ in range(10)]
+n,m = map(int,input().split(' '))
+mat = [[0 for _ in range(100)] for _ in range(100)]
 cnt = 1
-for i in range(int(n)):
-    x1,y1,x2,y2 = input().split(' ')
-    
-    mat[int(x1):int(x2)+1][int(y1):int(y2)+1] = [[cnt for _ in range(int(y2) - int(y1))] for _ in range(int(x2) - int(x1))]
-    print([[cnt*(int(y2) - int(y1))]*(int(x1) - int(x2))])
-    cnt += 1
-    print(mat[int(x1):int(x2)+1][int(y1):int(y2)] )
+for _ in range(n):
+    x1,y1,x2,y2 = map(int,input().split(' '))
+
+    for i in range(x1-1,x2):
+        for j in range(y1-1,y2):
+            mat[i][j] +=1
+
+ans = 0
+
+for i in range(100):
+    for j in range(100):
+
+        if mat[i][j] > m:
+            ans += 1
+
+print(ans)
