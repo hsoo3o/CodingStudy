@@ -23,6 +23,6 @@ for _ in range(int(input())):
             else: 
                 break
             i += 1
-
-print(' '.join(map(str,switch)))
-
+ans = str(switch[0])
+for s in range(0,n,20):
+    print(' '.join(map(str,switch[s:s+20])))
