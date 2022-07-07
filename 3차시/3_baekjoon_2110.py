@@ -9,7 +9,7 @@ for i in range(N):
     pos = int(stdin.readline())
     position.append(pos)
 position.sort()
-# print(position)
+print(position)
 
 left = 0
 right = position[N-1]
