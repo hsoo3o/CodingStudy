@@ -1,40 +1,30 @@
-import sys
 
-n,w,l = map(int,sys.stdin.readline().split())
-t = list(map(int,sys.stdin.readline().split()))
+n,w,l = map(int,input().split())
+t = list(map(int,input().split()))
 
 ans = 1
 bridge = []
-
 cnt = 0
 while t:
-    if sum(bridge) + t[0] <= l:
-        bridge.append(t.pop(0))
-        cnt += 1
-    else:
-        bridge.pop(0)
-        ans += cnt
-        cnt = 1
-    print(bridge)
-
-    # cnt += 1
-    
-    print(ans)
-    # print(bridge)
-if len(bridge) <= w:
-    ans += w
-else:
     ans += 1
-print(ans)
-'''
+    if bridge and t:
+        if sum(bridge) + t[0] <= l:
+            bridge.append(t.pop(0))    
+        else:
+            bridge.pop(0)
+            if len(bridge) == 0:
+                cnt += 1
+    else:
+        bridge.append(t.pop(0)) 
+print(ans, cnt,bridge)
+if bridge:
+    ans += w
 
+print(ans, cnt)
+'''
 9 5 5
 2 2 2 2 1 1 1 1 1
-
-4 2 10
-7 4 5 6
 '''
-
 # # 정답 : 19
 
 # 0 0 0 0 2
