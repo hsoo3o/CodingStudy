@@ -12,6 +12,9 @@ for t in range(T):
         numbers.append(stdin.readline().rstrip())
 
     numbers.sort(reverse=True)
+    # numbers.sort()
+
+    print(numbers)
 
     consistency = True
     while len(numbers) > 1:
