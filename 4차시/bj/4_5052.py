@@ -1,10 +1,9 @@
 import sys
 t = int(sys.stdin.readline())
 def check(num,n):
-    for i in range(n):
-        for j in range(i+1,n):
-            if num[j][:len(num[i])] == num[i]:
-                return False
+    for i in range(n-1):
+        if num[i] == num[i+1][:len(num[i])]:
+            return False
     return True
 
 for _ in range(t):
@@ -12,7 +11,7 @@ for _ in range(t):
     num = []
     for _ in range(n):
         num.append(sys.stdin.readline().rstrip())
-    num.sort(key=len)
+    num.sort()
     if check(num,n):
         print("YES")
     else:
