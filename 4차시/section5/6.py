@@ -1,20 +1,14 @@
 n,m = map(int,input().split())
-d = list(map(int, input().split()))
-q = [i for i in range(n)]
-print(q)
+d = [(idx,val) for idx,val in enumerate(list(map(int, input().split())))]
+
+
 cnt = 0
 while True:
-    p = q.pop(0)
     d1 = d.pop(0)
-    print(p,q,d,cnt)
-    if any(d[p-cnt] < left for left in d):
-        q.append(p)
+    if any(d[cnt][1] <= left for left in d):
         d.append(d1)
     else:
-        if p != m:
-            cnt += 1
-        else:
-            cnt += 1
+        cnt += 1
+        if d1[0] == m:
             break
-    print(cnt,d)
 print(cnt)
