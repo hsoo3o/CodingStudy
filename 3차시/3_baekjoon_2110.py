@@ -28,3 +28,5 @@ while left <= right:
         right = mid - 1
 
 print(right)
+
+10 20 10 20 30 40 
