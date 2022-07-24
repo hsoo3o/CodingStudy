@@ -28,8 +28,9 @@ def dfs(x,y):
     for i in range(4):
         xx = x + dx[i]
         yy = y + dy[i]
-        if 0 <= xx < M and 0 <= yy < N and visited[yy][xx] == 0 and mean_RGB[yy][xx] == 255:
-            dfs(xx,yy)
+        if 0 <= xx < M and 0 <= yy < N:
+            if visited[yy][xx] == 0 and mean_RGB[yy][xx] == 255:
+                dfs(xx,yy)
     
 
 cnt = 0
