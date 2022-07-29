@@ -2,12 +2,10 @@ from collections import deque
 import sys
 
 def find(pos):
-    print(pos)
     q = deque([pos])
-    eat = [[] for _ in range(2*N)]
+    eat = [[] for _ in range(N**2)]
     move = [[0]*N for _ in range(N)]
     ch = [[0]*N for _ in range(N)]
-    print(move)
     while q:
         x,y = q.popleft()
         ch[x][y] = 1
@@ -24,8 +22,6 @@ def find(pos):
                     elif fishes[xx][yy] < baby:
                         eat[move[xx][yy]].append([xx,yy])
                         q.append([xx,yy])
-    print(move)
-    print(fishes, baby)
     return eat
 
 
@@ -41,8 +37,8 @@ for i in range(N):
             fish[j] = 0
     fishes.append(fish)
 
-dx = [-1,1,0,0]
-dy = [0,0,1,-1]
+dx = [1,-1,0,0]
+dy = [0,0,-1,1]
 time = 0
 ate = find(start)
 cnt = 0
@@ -50,7 +46,8 @@ weight = 0
 while cnt != len(ate):
     cnt = 0
     for i in range(len(ate)):
-        if cnt == len(ate):
+        if cnt+1 == len(ate):
+            pos = -1
             break
         if len(ate[i]) == 0:
             cnt += 1
@@ -62,7 +59,8 @@ while cnt != len(ate):
                 weight = 0
             time += i
             fishes[x][y] = 0
-            ate = find((x,y))
+            pos = (x,y)
+            break
         else:
             ate[i].sort()
             x,y = ate[i][0]
@@ -72,8 +70,13 @@ while cnt != len(ate):
                 weight = 0
             time += i
             fishes[x][y] = 0
-            ate = find((x,y))
-        print(ate)
+            pos = (x,y)
+            break
+    if pos != -1:
+        ate = find(pos)
+    else:
+        break
+
 print(time)
 
 
