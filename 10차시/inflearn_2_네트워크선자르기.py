@@ -27,3 +27,5 @@ def dfs(N):
             tmp2 = dp[N-2]            
         return tmp1 + tmp2
 print(dfs(7))
+
+
