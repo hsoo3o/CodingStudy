@@ -43,7 +43,7 @@ def new_pos(d,r,c):
 
 def clean(r,c,d,spin):
     print("")
-    for _ in graph:
+    for _ in ch:
         print(_)
     global cnt
     # graph[r][c] = 1
@@ -65,4 +65,4 @@ def clean(r,c,d,spin):
             
 clean(R,C,D,0)
 
-print("cnt:",cnt)
+print(cnt)
