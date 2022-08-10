@@ -8,8 +8,6 @@ city = [list(map(int,input().split())) for _ in range(N)]
 
 n_chicken = 0
 
-# for _ in city:
-#     n_chicken += _.count(2)
 pos_chicken = []
 pos_home = []
 for r in range(N):
@@ -22,41 +20,32 @@ for r in range(N):
 
 dis = 0
 cand = []
-if n_chicken == M:
+for r_c,c_c in pos_chicken:
+    rc_cand,cc_cand = 0,0
+    dis = 0
     for r_h,c_h in pos_home:
-        dis_ch = 9999999
-        for r_c,c_c in pos_chicken:
+        dis += abs(r_h-r_c) + abs(c_h-c_c)
+        rc_cand,cc_cand = r_c,c_c
+    cand.append([(rc_cand,cc_cand),dis])
+cand.sort(key=lambda x:x[-1])
+
+dis = 999999
+
+candi = combinations(cand,M)
+def chicken_distance(cand):
+    d_chicken = 0
+    for r_h,c_h in pos_home:
+        dis = 99999
+        for chicken in cand:
+            r_c,c_c = chicken[0]
             tmp = abs(r_h-r_c) + abs(c_h-c_c)
-            if tmp < dis_ch:
-                dis_ch = tmp
-        dis += dis_ch
-else:
-    for r_c,c_c in pos_chicken:
-        rc_cand,cc_cand = 0,0
-        dis = 0
-        for r_h,c_h in pos_home:
-            dis += abs(r_h-r_c) + abs(c_h-c_c)
-            rc_cand,cc_cand = r_c,c_c
-        cand.append([(rc_cand,cc_cand),dis])
-    cand.sort(key=lambda x:x[-1])
-    
-    dis = 999999
-    
-    candi = combinations(cand,M)
-    def chicken_distance(cand):
-        d_chicken = 0
-        for r_h,c_h in pos_home:
-            dis = 99999
-            for chicken in cand:
-                r_c,c_c = chicken[0]
-                tmp = abs(r_h-r_c) + abs(c_h-c_c)
-                if tmp < dis:
-                    dis = tmp
-            d_chicken += dis
-        return d_chicken
-    for cand in candi:
-        tmp = chicken_distance(cand)
-        if tmp < dis:
-            dis = tmp
+            if tmp < dis:
+                dis = tmp
+        d_chicken += dis
+    return d_chicken
+for cand in candi:
+    tmp = chicken_distance(cand)
+    if tmp < dis:
+        dis = tmp
 
 print(dis)
